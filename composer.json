@@ -1,0 +1,23 @@
+{
+	"name": "ismaeltoe/osms",
+	"description": "PHP library wrapper of the Orange SMS API.",
+	"keywords": [
+        "php", "curl", "api", "sms", "client", "http client", "json", "requests", "rest", 
+        "restful", "web service", "orange"
+    ],
+	"homepage": "https://github.com/ismaeltoe/osms-php",
+	"license": "MIT",
+	"authors": [
+        {
+            "name": "Ismael Toé",
+            "email": "ismael.toe@gmail.com"
+        }
+    ],
+	"require": {
+        "php": ">=5.3.0",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {"Osms\\": "src/"}
+    }
+}
