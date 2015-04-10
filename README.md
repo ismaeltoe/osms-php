@@ -28,7 +28,12 @@ require 'vendor/autoload.php';
 use \Osms\Osms;
 
 $osms = new Osms('your_client_id', 'your_client_secret', 'your_access_token');
-$osms->sendSMS('tel:+22500000000', 'tel:+22501010101', 'Hello World!');
+
+$senderAddress = 'tel:+22500000000';
+$receiverAddress = 'tel:+22501010101';
+$message = 'Hello World!';
+
+$osms->sendSMS($senderAddress, $receiverAddress, $message);
 ```
 For more examples, see [examples](https://github.com/ismaeltoe/osms-php/tree/master/examples).
 
