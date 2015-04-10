@@ -2,12 +2,6 @@
 
 A PHP library to access Orange SMS API.
 
-* [Installation](#installation)
-* [Loading](#loading)
-* [Quick Start](#quick-start)
-* [Links](#links)
-* [License](#license)
-
 ## Installation
 
 Install Composer. Then, simply do:
