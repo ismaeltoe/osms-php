@@ -6,11 +6,11 @@ class Osms
 	const BASE_URL = 'https://api.orange.com';
 
 	/**
-     * Client Identifier. Unique ID provided by the Orange backend server to identify 
-     * your application.
-     *
-     * @var string
-     */
+	 * Client Identifier. Unique ID provided by the Orange backend server to identify 
+	 * your application.
+	 *
+	 * @var string
+	 */
     protected $clientId = '';
 
     /**
@@ -28,6 +28,13 @@ class Osms
     protected $token = '';
 
     /**
+     * cURL option for whether to verify the peer's certificate or not.
+     *
+     * @var bool
+     */
+    protected $verifyPeerSSL = true;
+
+    /**
 	 * Create a new Osms instance. If the user doesn't know his token or doesn't have a token 
 	 * yet, he can leave $token empty and retrieve a token with getTokenFromConsumerKey() 
 	 * method later.
@@ -35,13 +42,16 @@ class Osms
 	 * @param  string  $clientId
 	 * @param  string  $clientSecret
 	 * @param  string  $token
+	 * @param  bool    $verifyPeerSSL  Set to FALSE to stop cURL from verifying the peer's 
+	 *                                 certificate if SSL error
 	 * @return void
 	 */
-    public function __construct($clientId, $clientSecret, $token = '')
+    public function __construct($clientId, $clientSecret, $token = '', $verifyPeerSSL = true)
     {
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
         $this->token = $token;
+        $this->verifyPeerSSL = $verifyPeerSSL;
     }
 
     /**
@@ -248,13 +258,17 @@ class Osms
 	 	}
 
     	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    	if ($this->getVerifyPeerSSL() === false)
+    	{
+    		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    	}
     	// Make sure we can access the response when we execute the call
     	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     	$data = curl_exec($ch);
 
-    	if ($data === false) {
+    	if ($data === false) 
+    	{
     		return array('error' => 'API call failed with cURL error: ' . curl_error($ch));
     	}
 
@@ -265,31 +279,39 @@ class Osms
     	$response = json_decode($data, true);
 
 	    $jsonErrorCode = json_last_error();
-	    if ($jsonErrorCode !== JSON_ERROR_NONE) {
+	    if ($jsonErrorCode !== JSON_ERROR_NONE) 
+	    {
 	    	return array(
 	    		'error' => 'API response not well-formed (json error code: ' . $jsonErrorCode . ')');
 	    }
 
-    	if ($httpCode !== $successCode) {
+    	if ($httpCode !== $successCode) 
+    	{
 	        $errorMessage = '';
 
-	        if (!empty($response['error_description'])) {
+	        if (!empty($response['error_description'])) 
+	        {
 	            $errorMessage = $response['error_description'];
 	        }
-	        elseif (!empty($response['error'])) {
+	        elseif (!empty($response['error'])) 
+	        {
 	            $errorMessage = $response['error'];
 	        }
-	        elseif (!empty($response['description'])) {
+	        elseif (!empty($response['description'])) 
+	        {
 	            $errorMessage = $response['description'];
 	        }
-	        elseif (!empty($response['message'])) {
+	        elseif (!empty($response['message'])) 
+	        {
 	            $errorMessage = $response['message'];
 	        }
-	        elseif (!empty($response['requestError']['serviceException'])) {
+	        elseif (!empty($response['requestError']['serviceException'])) 
+	        {
 	            $errorMessage = $response['requestError']['serviceException']['text'] .
 	                ' ' . $response['requestError']['serviceException']['variables'];
 	        }
-	        elseif (!empty($response['requestError']['policyException'])) {
+	        elseif (!empty($response['requestError']['policyException'])) 
+	        {
 	            $errorMessage = $response['requestError']['policyException']['text'] .
 	                ' ' . $response['requestError']['policyException']['variables'];
 	        }
@@ -328,5 +350,15 @@ class Osms
     public function setToken($token)
     {
     	$this->token = $token;
+    }
+
+    /**
+	 *  Get CURLOPT_SSL_VERIFYPEER value.
+	 *
+	 * @return bool
+	 */
+    public function getVerifyPeerSSL()
+    {
+    	return $this->verifyPeerSSL;
     }
 }
