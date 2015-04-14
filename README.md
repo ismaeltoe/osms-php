@@ -4,9 +4,15 @@ A PHP library to access Orange SMS API.
 
 ## Installation
 
-Install Composer. Then, simply do:
+### With Composer (recommended)
+
+Install [Composer](https://getcomposer.org/). Then, do:
 
     $ composer require ismaeltoe/osms
+
+### Without composer
+
+Simply [download the latest release](https://github.com/ismaeltoe/osms-php/archive/master.zip).
 
 ## Loading
 
