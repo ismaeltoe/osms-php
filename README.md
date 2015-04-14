@@ -10,7 +10,7 @@ Install [Composer](https://getcomposer.org/). Then, do:
 
     $ composer require ismaeltoe/osms
 
-### Without composer
+### Without Composer
 
 Simply [download the latest release](https://github.com/ismaeltoe/osms-php/archive/master.zip).
 
@@ -24,7 +24,7 @@ require 'vendor/autoload.php';
 Otherwise, you can simply require the file directly:
 
 ```php
-require_once 'path/to/Osms.php';
+require 'path/to/Osms.php';
 ```
 ## Quick Start
 
