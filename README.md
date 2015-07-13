@@ -58,6 +58,10 @@ Follow this link to know more about the Orange SMS API:
 
  * [Orange SMS API](https://www.orangepartner.com/SMS-CI-API)
 
+## Other Libraries
+
+ * [osms-android](https://github.com/ismaeltoe/osms-android)
+
 ## License
 
 Released under the MIT License - see `LICENSE.txt` for details.
