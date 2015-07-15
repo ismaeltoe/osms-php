@@ -28,20 +28,49 @@ require 'path/to/Osms.php';
 ```
 ## Quick Start
 
+**Case 1: You have no access token**
+
 ```php
 require 'vendor/autoload.php';
 
 use \Osms\Osms;
 
-$osms = new Osms('your_client_id', 'your_client_secret', 'your_access_token');
+$osms = new Osms('your_client_id', 'your_client_secret');
+
+// retrieve an access token
+$response = $osms->getTokenFromConsumerKey();
+
+if (!empty($response['access_token'])) {
+    $senderAddress = 'tel:+22500000000';
+    $receiverAddress = 'tel:+22500000000';
+    $message = 'Hello World!';
+    $senderMessage = 'Optimus Prime';
+
+    $osms->sendSMS($senderAddress, $receiverAddress, $message, $senderName);
+} else {
+    // error
+}
+```
+
+**Case 2: You have an access token**
+
+```php
+require 'vendor/autoload.php';
+
+use \Osms\Osms;
+
+$osms = new Osms('your_client_id', 'your_client_secret');
+
+$osms->setAccessToken('your_access_token');
 
 $senderAddress = 'tel:+22500000000';
-$receiverAddress = 'tel:+22501010101';
+$receiverAddress = 'tel:+22500000000';
 $message = 'Hello World!';
+$senderMessage = 'Optimus Prime';
 
-$osms->sendSMS($senderAddress, $receiverAddress, $message);
+$osms->sendSMS($senderAddress, $receiverAddress, $message, $senderName);
 ```
-For more examples, see [examples](https://github.com/ismaeltoe/osms-php/tree/master/examples).
+Check out [examples](https://github.com/ismaeltoe/osms-php/tree/master/examples) for more examples.
 
 ## SSL certificate problem
 
