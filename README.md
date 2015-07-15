@@ -44,7 +44,7 @@ if (!empty($response['access_token'])) {
     $senderAddress = 'tel:+22500000000';
     $receiverAddress = 'tel:+22500000000';
     $message = 'Hello World!';
-    $senderMessage = 'Optimus Prime';
+    $senderName = 'Optimus Prime';
 
     $osms->sendSMS($senderAddress, $receiverAddress, $message, $senderName);
 } else {
