@@ -74,7 +74,7 @@ Check out [examples](https://github.com/ismaeltoe/osms-php/tree/master/examples)
 
 ## SSL certificate problem
 
-When running your application in a local environment, you will get an SSL error. To make things work, set the peer's certificate checking option to false:
+If you get an SSL error, set the peer's certificate checking option to false:
 
 ```php
 $osms = new Osms('your_client_id', 'your_client_secret', 'your_access_token', false);
