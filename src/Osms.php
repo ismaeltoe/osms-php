@@ -35,7 +35,7 @@ class Osms
     protected $verifyPeerSSL = true;
 
     /**
-     * Create a new Osms instance. If the user doesn't know his token or doesn't have a
+     * Creates a new Osms instance. If the user doesn't know his token or doesn't have a
      * token yet, he can leave $token empty and retrieve a token with
      * getTokenFromConsumerKey() method later.
      *
@@ -60,7 +60,7 @@ class Osms
     }
 
     /**
-     * Retrieves a token that will be used for all further API calls.
+     * Retrieves a token from Orange server, that will be used for all further API calls.
      *
      * @return array
      */
@@ -84,7 +84,7 @@ class Osms
     }
 
     /**
-     * Send SMS.
+     * Sends SMS.
      *
      * @param  string  $senderAddress    The receiver address in this format:
      *                                   "tel:+22500000000"
@@ -202,7 +202,7 @@ class Osms
     }
 
     /**
-     *  Get the Cliend ID.
+     *  Gets the Cliend ID.
      *
      * @return string
      */
@@ -212,7 +212,7 @@ class Osms
     }
 
     /**
-     *  Call API Endpoints.
+     *  Calls API Endpoints.
      *
      * @param  array   $headers         An array of HTTP header fields to set
      * @param  array   $args            The data to send
@@ -307,7 +307,7 @@ class Osms
     }
 
     /**
-     *  Get the Client Secret.
+     *  Gets the Client Secret.
      *
      * @return string
      */
@@ -317,7 +317,7 @@ class Osms
     }
 
     /**
-     *  Get the Token.
+     *  Gets the (local/current) Token.
      *
      * @return string
      */
@@ -327,9 +327,9 @@ class Osms
     }
 
     /**
-     *  Set the Token value.
+     *  Sets the Token value.
      *
-     * @return string
+     * @param  string  $token  the token
      */
     public function setToken($token)
     {
@@ -337,12 +337,23 @@ class Osms
     }
 
     /**
-     *  Get CURLOPT_SSL_VERIFYPEER value.
+     *  Gets the CURLOPT_SSL_VERIFYPEER value.
      *
      * @return bool
      */
     public function getVerifyPeerSSL()
     {
         return $this->verifyPeerSSL;
+    }
+
+    /**
+     *  Sets the CURLOPT_SSL_VERIFYPEER value.
+     *
+     * @param  bool  $verifyPeerSSL  FALSE to stop cURL from verifying the
+     *                               peer's certificate. TRUE otherwise.
+     */
+    public function setVerifyPeerSSL($verifyPeerSSL)
+    {
+        $this->verifyPeerSSL = $verifyPeerSSL;
     }
 }

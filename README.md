@@ -77,15 +77,14 @@ Check out [examples](https://github.com/ismaeltoe/osms-php/tree/master/examples)
 If you get an SSL error, set the peer's certificate checking option to false:
 
 ```php
-$osms = new Osms('your_client_id', 'your_client_secret', 'your_access_token', false);
+$osms = new Osms('your_client_id', 'your_client_secret');
+$osms->setVerifyPeerSSL(false);
 ```
 But it should work on your hosting server, so enable the certificate checking when you are ready to deploy your application for security reasons.
 
-## Links
+## Documentation
 
-Follow this link to know more about the Orange SMS API:
-
- * [Orange SMS API](https://www.orangepartner.com/SMS-CI-API)
+ * Native API [https://www.orangepartner.com/SMS-CI-API](https://www.orangepartner.com/SMS-CI-API)
 
 ## Other Libraries
 
