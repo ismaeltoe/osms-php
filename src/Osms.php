@@ -45,7 +45,7 @@ class Osms
      *
      * @return void
      */
-    public function __construct($config)
+    public function __construct($config = array())
     {
         if (array_key_exists('clientId', $config)) {
             $this->clientId = $config['clientId'];
