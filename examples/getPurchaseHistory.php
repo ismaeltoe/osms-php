@@ -3,7 +3,13 @@ require '../src/Osms.php';
 
 use \Osms\Osms;
 
-$osms = new Osms('your_client_id', 'your_client_secret', 'your_access_token');
+$config = array(
+    'token' => 'your_access_token'
+);
+
+$osms = new Osms($config);
+
+//$osms->setVerifyPeerSSL(false);
 
 $response = $osms->getAdminPurchasedBundles();
 //$response = $osms->getAdminPurchasedBundles('CIV');

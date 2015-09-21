@@ -39,24 +39,28 @@ class Osms
      * token yet, he can leave $token empty and retrieve a token with
      * getTokenFromConsumerKey() method later.
      *
-     * @param  string  $clientId
-     * @param  string  $clientSecret
-     * @param  string  $token
-     * @param  bool    $verifyPeerSSL  Set to FALSE to stop cURL from verifying the
-     *                                 peer's certificate if SSL error
+     * @param  array  $config  An associative array containing clientId (required), 
+     *                       clientSecret (required), token (optional), 
+     *                       and verifyPeerSSL (optional)
      *
      * @return void
      */
-    public function __construct(
-        $clientId,
-        $clientSecret,
-        $token = '',
-        $verifyPeerSSL = true
-    ) {
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
-        $this->token = $token;
-        $this->verifyPeerSSL = $verifyPeerSSL;
+    public function __construct($config)
+    {
+        if (array_key_exists('clientId', $config)) {
+            $this->clientId = $config['clientId'];
+        }
+        if (array_key_exists('clientSecret', $config)) {
+            $this->clientSecret = $config['clientSecret'];
+        }
+        if (array_key_exists('token', $config)) {
+            $this->token = $config['token'];
+        }
+        if (array_key_exists('verifyPeerSSL', $config)) {
+            $this->verifyPeerSSL = $config['verifyPeerSSL'];
+        } else {
+            $this->verifyPeerSSL = true;
+        }
     }
 
     /**
@@ -202,16 +206,6 @@ class Osms
     }
 
     /**
-     *  Gets the Cliend ID.
-     *
-     * @return string
-     */
-    public function getClientId()
-    {
-        return $this->clientId;
-    }
-
-    /**
      *  Calls API Endpoints.
      *
      * @param  array   $headers         An array of HTTP header fields to set
@@ -307,6 +301,26 @@ class Osms
     }
 
     /**
+     *  Gets the Cliend ID.
+     *
+     * @return string
+     */
+    public function getClientId()
+    {
+        return $this->clientId;
+    }
+
+    /**
+     *  Sets the Client ID.
+     *
+     * @param  string  $clientId  the Client ID
+     */
+    public function setClientId($clientId)
+    {
+        $this->clientId = $clientId;
+    }
+
+    /**
      *  Gets the Client Secret.
      *
      * @return string
@@ -314,6 +328,16 @@ class Osms
     public function getClientSecret()
     {
         return $this->clientSecret;
+    }
+
+    /**
+     *  Sets the Client Secret.
+     *
+     * @param  string  $clientSecret  the Client Secret
+     */
+    public function setClientSecret($clientSecret)
+    {
+        $this->clientSecret = $clientSecret;
     }
 
     /**

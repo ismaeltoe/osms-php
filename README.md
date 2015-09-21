@@ -35,7 +35,12 @@ require 'vendor/autoload.php';
 
 use \Osms\Osms;
 
-$osms = new Osms('your_client_id', 'your_client_secret');
+$config = array(
+    'clientId' => 'your_client_id',
+    'clientSecret' => 'your_client_secret'
+);
+
+$osms = new Osms($config);
 
 // retrieve an access token
 $response = $osms->getTokenFromConsumerKey();
@@ -59,9 +64,11 @@ require 'vendor/autoload.php';
 
 use \Osms\Osms;
 
-$osms = new Osms('your_client_id', 'your_client_secret');
+$config = array(
+    'token' => 'your_access_token'
+);
 
-$osms->setAccessToken('your_access_token');
+$osms = new Osms($config);
 
 $senderAddress = 'tel:+22500000000';
 $receiverAddress = 'tel:+22500000000';
@@ -72,12 +79,14 @@ $osms->sendSMS($senderAddress, $receiverAddress, $message, $senderName);
 ```
 Check out [examples](https://github.com/ismaeltoe/osms-php/tree/master/examples) for more examples.
 
+CHECK OUT also [Osms.php](https://github.com/ismaeltoe/osms-php/blob/master/src/Osms.php) to see all the methods available. But DON'T MODIFY IT. You can extend the class to add your own stuff.
+
 ## SSL certificate problem
 
 If you get an SSL error, set the peer's certificate checking option to false:
 
 ```php
-$osms = new Osms('your_client_id', 'your_client_secret');
+$osms = new Osms();
 $osms->setVerifyPeerSSL(false);
 ```
 But it should work on your hosting server, so enable the certificate checking when you are ready to deploy your application for security reasons.

@@ -3,7 +3,14 @@ require '../src/Osms.php';
 
 use \Osms\Osms;
 
-$osms = new Osms('your_client_id', 'your_client_secret');
+$config = array(
+    'clientId' => 'your_client_id',
+    'clientSecret' => 'your_client_secret'
+);
+
+$osms = new Osms($config);
+
+//$osms->setVerifyPeerSSL(false);
 
 $response = $osms->getTokenFromConsumerKey();
 
