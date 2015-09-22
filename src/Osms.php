@@ -39,9 +39,8 @@ class Osms
      * token yet, he can leave $token empty and retrieve a token with
      * getTokenFromConsumerKey() method later.
      *
-     * @param  array  $config  An associative array containing clientId (required), 
-     *                       clientSecret (required), token (optional), 
-     *                       and verifyPeerSSL (optional)
+     * @param  array  $config  An associative array that can contain clientId, clientSecret, 
+     *                         token, and verifyPeerSSL
      *
      * @return void
      */
