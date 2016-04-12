@@ -95,7 +95,7 @@ But it should work on your hosting server, so enable the certificate checking wh
 
 ## Documentation
 
- * Native API [https://www.orangepartner.com/SMS-CI-API](https://www.orangepartner.com/SMS-CI-API)
+ * Native API [https://developer.orange.com/apis/sms-ci/getting-started](https://developer.orange.com/apis/sms-ci/getting-started)
 
 ## Other Libraries
 
