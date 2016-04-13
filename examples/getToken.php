@@ -17,6 +17,7 @@ $response = $osms->getTokenFromConsumerKey();
 if (empty($response['error'])) {
     echo $response['access_token'];
     // echo $osms->getToken();
+    // echo '<pre>'; print_r($response); echo '</pre>';
 } else {
     echo $response['error'];
 }

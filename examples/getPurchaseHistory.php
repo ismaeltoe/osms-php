@@ -14,14 +14,8 @@ $osms = new Osms($config);
 $response = $osms->getAdminPurchasedBundles();
 //$response = $osms->getAdminPurchasedBundles('CIV');
 
-if (empty($response['error'])) {    
-    $purchaseOrders = $response['purchaseOrders'];
-
-    foreach ($purchaseOrders as $purchaseOrder) {
-        echo $purchaseOrder['bundleDescription'] .' ';
-        echo $purchaseOrder['orderExecutioninformation']['amount'] . ' '
-            . $purchaseOrder['orderExecutioninformation']['currency'];
-    }
+if (empty($response['error'])) {
+    echo '<pre>'; print_r($response); echo '</pre>';
 } else {
     echo $response['error'];
 }

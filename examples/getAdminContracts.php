@@ -15,7 +15,7 @@ $response = $osms->getAdminContracts('CIV');
 // $response = $osms->getAdminContracts();
 
 if (empty($response['error'])) {
-    var_export($response);
+    echo '<pre>'; print_r($response); echo '</pre>';
 } else {
     echo $response['error'];
 }
