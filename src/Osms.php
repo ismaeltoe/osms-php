@@ -39,8 +39,9 @@ class Osms
      * token yet, he can leave $token empty and retrieve a token with
      * getTokenFromConsumerKey() method later.
      *
-     * @param  array  $config  An associative array that can contain clientId, clientSecret, 
-     *                         token, and verifyPeerSSL
+     * @param  array  $config  An associative array containing clientId (required), 
+     *                       clientSecret (required), token (optional), 
+     *                       and verifyPeerSSL (optional)
      *
      * @return void
      */
@@ -276,7 +277,6 @@ class Osms
 
         if ($httpCode !== $successCode) {
             $errorMessage = '';
-
             if (!empty($response['error_description'])) {
                 $errorMessage = $response['error_description'];
             } elseif (!empty($response['error'])) {
@@ -287,10 +287,10 @@ class Osms
                 $errorMessage = $response['message'];
             } elseif (!empty($response['requestError']['serviceException'])) {
                 $errorMessage = $response['requestError']['serviceException']['text']
-                    . ' ' . $response['requestError']['serviceException']['variables'];
+                    . ' ' . implode(" --- ",$response['requestError']['serviceException']['variables']);
             } elseif (!empty($response['requestError']['policyException'])) {
                 $errorMessage = $response['requestError']['policyException']['text']
-                    . ' ' . $response['requestError']['policyException']['variables'];
+                    . ' ' . implode(" --- ",$response['requestError']['policyException']['variables']);
             }
 
             return array('error' => $errorMessage);
