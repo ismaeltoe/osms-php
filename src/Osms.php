@@ -69,11 +69,11 @@ class Osms
      */
     public function getTokenFromConsumerKey()
     {   
-        $url = self::BASE_URL . '/oauth/v2/token';
+        $url = self::BASE_URL . '/oauth/v3/token';
 
         $credentials = $this->getClientId() . ':' . $this->getClientSecret();
 
-        $headers = array('Authorization: Basic ' . base64_encode($credentials));
+        $headers = array('Authorization: Basic ' . base64_encode($credentials), 'Accept : application/json');
 
         $args = array('grant_type' => 'client_credentials');
 
