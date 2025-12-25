@@ -48,7 +48,7 @@ $osms = new Osms($config);
 $response = $osms->getTokenFromConsumerKey();
 
 if (!empty($response['access_token'])) {
-    $senderAddress = 'tel:+22500000000';
+    $senderAddress = 'tel:+2250000';
     $receiverAddress = 'tel:+22500000000';
     $message = 'Hello World!';
     $senderName = 'Optimus Prime';
@@ -72,7 +72,7 @@ $config = array(
 
 $osms = new Osms($config);
 
-$senderAddress = 'tel:+22500000000';
+$senderAddress = 'tel:+2250000';
 $receiverAddress = 'tel:+22500000000';
 $message = 'Hello World!';
 $senderName = 'Optimus Prime';
@@ -82,6 +82,10 @@ $osms->sendSMS($senderAddress, $receiverAddress, $message, $senderName);
 Check out [examples](https://github.com/ismaeltoe/osms-php/tree/master/examples) for more examples.
 
 CHECK OUT also [Osms.php](https://github.com/ismaeltoe/osms-php/blob/master/src/Osms.php) to see all the methods available. But DON'T MODIFY IT. You can extend the class to add your own stuff.
+
+## Country Sender Number
+
+The sender address is a unique country sender number per country. You can find the list of country sender numbers [here](https://developer.orange.com/apis/sms/getting-started).
 
 ## SSL certificate problem
 
